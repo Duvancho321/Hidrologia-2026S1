@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Datos grandes (descomentar si es necesario)
+# Tarea1/datos/camels_raw/
+# *.nc
+# *.h5
+
+# Archivos temporales
+*.tmp
+*.bak
+*.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos comprimidos de entrega
+*.tar.gz
+*.zip
+
+# Resultados intermedios (descomentar si no quieres trackear)
+# Tarea1/figuras/*.png
+# Tarea1/figuras/*.pdf
