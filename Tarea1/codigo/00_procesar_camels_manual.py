@@ -37,8 +37,9 @@ print(f"📦 Leyendo ZIP: {CAMELS_ZIP.name} ({CAMELS_ZIP.stat().st_size/1024/102
 # Extraer datos de la cuenca del ZIP (sin descomprimir todo)
 with ZipFile(CAMELS_ZIP, 'r') as zf:
     # Buscar archivos de nuestra cuenca
-    prefix, archivos = gauge_id[:2], [f for f in zf.namelist()
-                                      if f'{prefix}/{gauge_id}_' in f and f.endswith('.txt')]
+    prefix = gauge_id[:2]
+    archivos = [f for f in zf.namelist()
+                if f'{prefix}/{gauge_id}_' in f and f.endswith('.txt')]
 
     if not archivos:
         print(f"❌ No se encontraron archivos para cuenca {gauge_id}")
