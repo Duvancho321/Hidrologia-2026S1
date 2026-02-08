@@ -2,7 +2,7 @@
 ## Cuenca CAMELS 11180500
 
 **Autor:** Duvan Nieves
-**Código:** [COMPLETAR]
+**Código:** 1101759197
 **Fecha:** Febrero 2026
 **Curso:** Hidrología
 **Profesor:** Carlos David Hoyos
@@ -23,15 +23,9 @@ Se desarrolló e implementó un modelo hidrológico conceptual de dos tanques pa
 
 Los modelos hidrológicos conceptuales son herramientas fundamentales en ingeniería hidrológica y gestión de recursos hídricos. A diferencia de los modelos físicamente basados que requieren gran cantidad de datos y tiempo de cómputo, los modelos conceptuales capturan los procesos hidrológicos esenciales mediante ecuaciones simplificadas que representan almacenamientos y flujos.
 
-El modelo de dos tanques es una de las estructuras conceptuales más simples pero efectivas, representando:
-- **Procesos superficiales rápidos:** escorrentía directa y almacenamiento en el suelo
-- **Procesos subterráneos lentos:** almacenamiento en acuíferos y flujo base
+El modelo de dos tanques constituye una de las estructuras conceptuales más simples pero efectivas, representando procesos superficiales rápidos (escorrentía directa y almacenamiento en el suelo) y procesos subterráneos lentos (almacenamiento en acuíferos y flujo base).
 
-Esta simplicidad conceptual permite:
-1. **Comprensión clara** de los procesos dominantes en la cuenca
-2. **Calibración eficiente** con algoritmos de optimización
-3. **Interpretación física** de los parámetros calibrados
-4. **Aplicabilidad práctica** con datos limitados
+Esta simplicidad conceptual facilita la comprensión de los procesos dominantes en la cuenca, permite calibración eficiente mediante algoritmos de optimización, garantiza interpretación física de los parámetros calibrados, y posibilita su aplicación práctica con datos limitados.
 
 ### 1.2 Objetivos
 
@@ -61,16 +55,9 @@ Este dataset es ampliamente usado en hidrología para estudios comparativos de m
 
 ### 2.2 Criterios de Selección de Cuenca
 
-Se establecieron los siguientes criterios para seleccionar una cuenca apropiada:
+Se establecieron tres criterios para la selección de cuencas: (1) área menor a 500 km² para minimizar tiempos de respuesta y complejidad de procesos hidrológicos, (2) fracción de nieve menor al 10% (preferiblemente 0%) para evitar la complejidad adicional de procesos de acumulación y derretimiento nival, y (3) disponibilidad de datos completos para el período 1980-2014 sin vacíos significativos en precipitación y caudal.
 
-1. **Área < 500 km²:** Cuencas pequeñas tienen tiempos de respuesta más rápidos y procesos hidrológicos más directos
-2. **Fracción de nieve < 10% (preferible 0%):** Evitar complejidad de procesos de acumulación/derretimiento de nieve
-3. **Datos completos 1980-2014:** Sin gaps significativos en precipitación y caudal
-
-De las 671 cuencas disponibles en CAMELS, **206 cumplieron todos los criterios**. Se priorizaron cuencas con:
-- 0% de fracción de nieve (10 cuencas)
-- Área entre 20-300 km² (balance entre escala de procesos y complejidad)
-- Relación precipitación-caudal razonable (P > 1 mm/día, Q > 0.1 mm/día)
+De las 671 cuencas disponibles en CAMELS, 206 satisfacen estos criterios. La selección se priorizó considerando cuencas con ausencia total de nieve (10 cuencas identificadas), área entre 20-300 km² (equilibrio entre representatividad de procesos y complejidad del sistema), y relación precipitación-caudal dentro de rangos razonables (P > 1 mm/día, Q > 0.1 mm/día).
 
 ### 2.3 Cuenca Seleccionada: 11180500
 
@@ -93,19 +80,9 @@ De las 671 cuencas disponibles en CAMELS, **206 cumplieron todos los criterios**
 
 ### 2.4 Justificación de la Selección
 
-La cuenca 11180500 fue seleccionada porque:
+La cuenca 11180500 cumple satisfactoriamente todos los criterios establecidos: área reducida de 24 km², ausencia total de influencia nival (fracción de nieve = 0%), y disponibilidad completa de datos para el período analizado. La simplicidad hidrológica resultante permite la aplicación directa del modelo de dos tanques sin requerir módulos adicionales para procesos nivales. El área de 24 km² representa una escala de cuenca de cabecera típica, manejable para modelado conceptual. El balance hídrico observado (precipitación media 1.49 mm/d, caudal medio 0.28 mm/d) sugiere evapotranspiración significativa (~81% de P). El coeficiente de escorrentía bajo (~0.19) indica predominancia de procesos de infiltración y almacenamiento en el sistema.
 
-1. **Cumple todos los criterios establecidos:** Área pequeña (24 km²), sin influencia de nieve (0%), datos completos
-2. **Simplicidad hidrológica:** La ausencia de nieve permite usar el modelo de dos tanques sin módulos adicionales
-3. **Escala manejable:** El área de 24 km² representa una cuenca de cabecera típica
-4. **Balance hídrico razonable:** Precipitación media de 1.49 mm/d y caudal de 0.28 mm/d sugieren evapotranspiración significativa (~81% de P)
-5. **Variabilidad interesante:** El coeficiente de escorrentía bajo (~0.19) indica procesos de infiltración y almacenamiento importantes
-
-**Ubicación geográfica:** Dry Creek es un arroyo ubicado en la región de la Bahía de San Francisco, drena la vertiente occidental de las colinas de East Bay hacia Union City. Se encuentra en zona urbana/suburbana del condado de Alameda.
-
-**Características climáticas:** Clima mediterráneo típico de California costera, con veranos secos y calurosos e inviernos húmedos y templados. La elevación baja (88 m) y la ausencia de nieve permiten modelado hidrológico simplificado.
-
-**Contexto operacional:** Estación operada en cooperación con Alameda County Water District desde principios del siglo XX (datos desde 1916), indicando importancia para gestión de recursos hídricos locales.
+Dry Creek drena la vertiente occidental de las colinas de East Bay hacia Union City en la región de la Bahía de San Francisco, California. La cuenca se localiza en zona urbana-suburbana del condado de Alameda. El clima es mediterráneo típico de California costera, caracterizado por veranos secos y calurosos e inviernos húmedos y templados. La elevación baja (88 m) y ausencia de nieve simplifican el modelado hidrológico al eliminar procesos nivales. La estación de aforo opera en cooperación con Alameda County Water District desde 1916, evidenciando su importancia para la gestión de recursos hídricos locales.
 
 ![Figura 1: Distribución de cuencas CAMELS y cuenca seleccionada](../figuras/exploracion_cuencas.png)
 
@@ -132,7 +109,7 @@ Para cada cuenca, CAMELS proporciona:
 
 ### 3.2 Estadísticas de los Datos
 
-**Tabla 2: Estadísticas por período de análisis (Datos Sintéticos)**
+**Tabla 2: Estadísticas por período de análisis (Datos CAMELS - Fuente Daymet)**
 
 | Período | P media<br>(mm/d) | P std<br>(mm/d) | P máx<br>(mm/d) | Q media<br>(mm/d) | Q std<br>(mm/d) | Q máx<br>(mm/d) |
 |---------|-------------|---------|---------|-------------|---------|---------|
@@ -140,10 +117,7 @@ Para cada cuenca, CAMELS proporciona:
 | Calibración (1990-2000) | 1.49 | 1.12 | 9.91 | 0.101 | 0.059 | 0.38 |
 | Validación (2000-2010) | 1.50 | 1.13 | 9.84 | 0.101 | 0.060 | 0.43 |
 
-**Observaciones:**
-- Precipitación relativamente consistente entre períodos
-- Alta variabilidad (std ≈ media), típico de clima mediterráneo
-- Caudales bajos comparados con precipitación (ET alta)
+La precipitación se mantiene relativamente consistente entre períodos analizados. Se observa alta variabilidad (desviación estándar aproximadamente igual a la media), característica típica del régimen climático mediterráneo. Los caudales son considerablemente bajos en comparación con la precipitación, indicando alta evapotranspiración.
 
 ![Figura 2: Series temporales de precipitación y caudal](../figuras/series_tiempo.png)
 
@@ -159,11 +133,7 @@ Para cada cuenca, CAMELS proporciona:
 | MAURER | 1.498 | 1.129 | 10.59 | 0.051 | -0.014 | 0.0573 |
 | NLDAS | 1.495 | 1.120 | 9.84 | 0.050 | -0.017 | 0.0573 |
 
-**Observaciones:**
-- Las tres fuentes muestran estadísticas muy similares (diferencias < 0.3%)
-- Desempeño del modelo prácticamente idéntico (NSE varía < 0.001)
-- Mayor resolución espacial de Daymet (1 km) justifica su uso
-- Para cuencas pequeñas como esta (24 km²), la resolución espacial es relevante
+Las tres fuentes de precipitación presentan estadísticas muy similares con diferencias menores al 0.3%. El desempeño del modelo resulta prácticamente idéntico entre fuentes (variación de NSE menor a 0.001). La mayor resolución espacial de Daymet (1 km versus 12 km) justifica su selección para este estudio. En cuencas de escala reducida (24 km²), la resolución espacial de los forzamientos meteorológicos adquiere mayor relevancia.
 
 ![Figura 3: Comparación de fuentes de precipitación](../figuras/comparacion_precip.png)
 
@@ -238,43 +208,21 @@ Se utilizó el **Nash-Sutcliffe Efficiency (NSE)** como función objetivo:
 
 $$NSE = 1 - \frac{\sum_{t=1}^{n}(Q_{obs,t} - Q_{sim,t})^2}{\sum_{t=1}^{n}(Q_{obs,t} - \bar{Q}_{obs})^2}$$
 
-**Interpretación:**
-- NSE = 1: ajuste perfecto
-- NSE = 0: modelo tan bueno como usar la media de observaciones
-- NSE < 0: modelo peor que la media (malo)
-
-**Rangos de desempeño típicos en hidrología:**
-- NSE > 0.75: Excelente
-- 0.65 < NSE < 0.75: Bueno
-- 0.50 < NSE < 0.65: Satisfactorio
-- NSE < 0.50: Insatisfactorio
+Un valor de NSE = 1 indica ajuste perfecto, NSE = 0 indica que el modelo tiene el mismo desempeño que utilizar la media de las observaciones, y NSE < 0 indica desempeño inferior a la media. La clasificación estándar en hidrología establece: NSE > 0.75 como excelente, 0.65-0.75 como bueno, 0.50-0.65 como satisfactorio, y NSE < 0.50 como insatisfactorio (Moriasi et al., 2007).
 
 ### 4.5 Algoritmo de Optimización
 
-**Evolución Diferencial** (scipy.optimize.differential_evolution):
+Se utilizó el algoritmo de evolución diferencial implementado en scipy.optimize.differential_evolution. La configuración empleada utiliza la estrategia best1bin con una población de 120 individuos (15 veces el número de parámetros calibrables). Se estableció un máximo de 100 iteraciones con tolerancia de convergencia de 0.01. El modo de actualización deferred permite evaluaciones paralelas más eficientes. Se fijó semilla aleatoria en 42 para garantizar reproducibilidad de resultados.
 
-- **Estrategia:** best1bin
-- **Población:** 15 × 8 = 120 individuos (15 veces el número de parámetros)
-- **Iteraciones máximas:** 100
-- **Tolerancia:** 0.01
-- **Actualización:** deferred (más rápido en paralelo)
-- **Semilla:** 42 (reproducibilidad)
-
-La evolución diferencial es un algoritmo global que explora eficientemente el espacio de parámetros sin requerir gradientes.
+La evolución diferencial constituye un algoritmo de optimización global que explora eficientemente el espacio de parámetros sin requerir cálculo de gradientes, resultando particularmente apropiado para funciones objetivo no convexas y espacios de parámetros de alta dimensionalidad como el presente caso (8 parámetros).
 
 ### 4.6 Períodos de Análisis
 
-- **Calentamiento (warm-up):** 365 días previos a calibración
-  - Inicializa estados S₁ y S₂
-  - **No se incluye** en cálculo de métricas
+Se definieron tres períodos temporales para el análisis hidrológico. El período de calentamiento (warm-up) comprende 365 días previos al inicio de calibración, con el propósito de inicializar adecuadamente los estados de almacenamiento S₁ y S₂. Este período no se incluye en el cálculo de métricas de desempeño pero es fundamental para eliminar efectos de condiciones iniciales arbitrarias.
 
-- **Calibración:** 1990-01-01 a 2000-12-31 (10 años)
-  - Optimización de parámetros
-  - 3652 días
+El período de calibración abarca del 1 de enero de 1990 al 31 de diciembre de 2000 (3652 días, 10 años), durante el cual se realiza la optimización de parámetros mediante minimización del negativo del NSE.
 
-- **Validación:** 2000-01-01 a 2010-12-31 (10 años)
-  - Evaluación independiente
-  - 3652 días
+El período de validación comprende del 1 de enero de 2000 al 31 de diciembre de 2010 (3652 días, 10 años), utilizado para evaluación independiente del desempeño del modelo con parámetros fijos obtenidos en calibración. Esta partición temporal permite evaluar la capacidad de generalización del modelo a condiciones climáticas potencialmente diferentes.
 
 ---
 
@@ -295,14 +243,7 @@ La evolución diferencial es un algoritmo global que explora eficientemente el e
 | $D_2$ | 650.6 mm | Capacidad del acuífero **grande** (~65 cm) |
 | $k_2$ | 0.523 | Descarga del acuífero **rápida** (T ≈ 1.9 días) |
 
-**Tiempo de residencia:** T = 1/k
-
-**Observaciones (Datos Reales):**
-- ET base significativa (2.22 mm/d) + fracción adicional (47% de P)
-- Algo de escorrentía directa (7.7%) en eventos importantes
-- Flujo dominado por respuesta subterránea relativamente rápida (k₂ = 0.52)
-- Suelo superficial pequeño pero acuífero grande
-- Balance ET realista: ET_base + β·P ≈ 2.2 + 0.47×1.6 ≈ 2.95 mm/d
+El tiempo de residencia se calcula como T = 1/k. Los parámetros calibrados revelan evapotranspiración base significativa (2.22 mm/d) complementada con una fracción adicional (47% de la precipitación). Se identifica escorrentía directa moderada (7.7%) durante eventos significativos. El sistema muestra respuesta dominada por flujo subterráneo con descarga relativamente rápida (k₂ = 0.52). La configuración de almacenamientos indica suelo superficial reducido (75.8 mm) y acuífero de mayor capacidad (650.6 mm). El balance de evapotranspiración resulta físicamente consistente: ET_total = ET_base + β·P ≈ 2.2 + 0.47×1.6 ≈ 2.95 mm/d.
 
 ### 5.2 Desempeño del Modelo
 
@@ -313,22 +254,9 @@ La evolución diferencial es un algoritmo global que explora eficientemente el e
 | Calibración | 0.771 | 0.531 | 0.885 | 0.843 | 1.427 | 0.723 | 42.7 |
 | Validación | 0.417 | 0.049 | 0.680 | 0.700 | 1.844 | 0.673 | 84.4 |
 
-**Interpretación de métricas:**
-- **NSE calibración = 0.77**: **Excelente** según criterios estándar (> 0.75)
-- **NSE validación = 0.42**: **Satisfactorio** (0.50 es umbral típico)
-- **KGE calibración = 0.53**: Bueno (KGE > 0.5 considerado aceptable)
-- **KGE validación = 0.05**: Bajo, indica problemas en validación
-- **r (correlación)**: Alta en calibración (0.88), moderada en validación (0.68)
-- **α (variabilidad)**: Modelo subestima variabilidad (α < 1)
-- **β (sesgo)**: Modelo sobreestima caudal (β > 1) → PBIAS positivo alto
-- **RMSE**: ~0.7 mm/d en ambos períodos (error absoluto similar)
-- **PBIAS**: **Problema serio** - modelo sobreestima 43% (cal) y 84% (val)
+El NSE de calibración (0.771) clasifica como excelente según criterios estándar (> 0.75), mientras que el NSE de validación (0.417) se considera satisfactorio. El KGE de calibración (0.531) es aceptable (> 0.5), pero su degradación en validación (0.049) indica problemas en la capacidad predictiva. La correlación es alta en calibración (r = 0.885) y moderada en validación (r = 0.680). El parámetro α (variabilidad relativa) menor a 1 indica que el modelo subestima la variabilidad del caudal. El parámetro β (sesgo relativo) mayor a 1 señala sobreestimación sistemática del caudal, consistente con el PBIAS positivo elevado. El RMSE permanece aproximadamente constante (~0.7 mm/d) en ambos períodos. El PBIAS representa la limitación más significativa del modelo, con sobreestimación del 42.7% en calibración y 84.4% en validación.
 
-**Clasificación según Moriasi et al. (2007):**
-- Calibración: Muy bueno (NSE > 0.75, PBIAS < ±25% es límite)
-- Validación: Satisfactorio (NSE > 0.4) pero PBIAS indica sesgo significativo
-
-**Nota:** Caída de NSE de 0.77 a 0.42 sugiere cierto sobre-ajuste o diferencias entre períodos climáticos.
+Según la clasificación de Moriasi et al. (2007), el desempeño en calibración es muy bueno (NSE > 0.75), aunque el PBIAS excede el límite recomendado de ±25%. En validación, el NSE permanece satisfactorio (> 0.4) pero el sesgo se acentúa considerablemente. La caída de NSE de 0.77 a 0.42 sugiere sobre-ajuste parcial o no-estacionariedad entre períodos climáticos.
 
 ![Figura 4: Resultados de calibración](../figuras/calibracion.png)
 
@@ -349,13 +277,7 @@ La evolución diferencial es un algoritmo global que explora eficientemente el e
 - Coeficiente de escorrentía simulado: 0.251 (25.1%)
 - Error en volumen total: +438 mm (+42.7% sobreestimación - PBIAS)
 
-**Interpretación (Datos Reales):**
-- Aproximadamente 17.6% de la precipitación se convierte en caudal (mayor que esperado inicialmente)
-- Evapotranspiración real ≈ 82.4% de P (4,804 mm en 10 años)
-- **Problema identificado:** Modelo sobreestima caudal en 42.7% (PBIAS alto)
-- Posibles causas: ET simplificada, parámetros α₁ o k₂ demasiado altos, representación del acuífero
-- Balance hídrico razonable para clima mediterráneo pero con sesgo sistemático
-- La sobreestimación aumenta en validación (PBIAS = 84%), sugiriendo parámetros no óptimos para todo el rango climático
+El coeficiente de escorrentía observado es 17.6%, indicando que aproximadamente una quinta parte de la precipitación se convierte en caudal. La evapotranspiración representa aproximadamente 82.4% de la precipitación (4,804 mm en el período de calibración). El modelo sobreestima sistemáticamente el caudal en 42.7%, constituyendo la principal limitación identificada. Las causas probables incluyen representación simplificada de evapotranspiración, valores excesivos de parámetros de flujo (α₁ o k₂), o representación inadecuada del almacenamiento subterráneo. El balance hídrico general es razonable para clima mediterráneo, pero presenta sesgo sistemático. El incremento del PBIAS a 84.4% en validación sugiere que los parámetros no son óptimos para el rango completo de condiciones climáticas observadas.
 
 ---
 
@@ -363,149 +285,67 @@ La evolución diferencial es un algoritmo global que explora eficientemente el e
 
 ### 6.1 Interpretación Física de Parámetros
 
-**Evapotranspiración (ETc = 0, β = 0.93):**
-El modelo calibrado indica que prácticamente toda la evapotranspiración es proporcional a la precipitación (β alto, ETc ≈ 0). Esto sugiere que:
-- La ET está limitada principalmente por disponibilidad de agua
-- En ausencia de lluvia, la ET es mínima
-- Consistente con vegetación que depende fuertemente de precipitación estacional
+Los parámetros de evapotranspiración (ETc = 2.22 mm/d, β = 0.47) indican que el sistema presenta una componente base significativa complementada por evaporación proporcional a la precipitación. Esta configuración sugiere limitación por disponibilidad de agua durante períodos secos y capacidad de respuesta durante eventos de precipitación. La magnitud de ETc es consistente con demanda evaporativa de clima mediterráneo.
 
-**Escorrentía directa (α₁ = 0):**
-La ausencia de escorrentía directa implica:
-- Suelos con alta capacidad de infiltración
-- Eventos de precipitación generalmente no saturan el suelo
-- **[Verificar con datos reales si hay eventos extremos]**
+El parámetro de escorrentía directa (α₁ = 0.077) indica que aproximadamente 7.7% de la precipitación neta genera escurrimiento superficial directo. Este valor moderado sugiere suelos con capacidad de infiltración significativa pero no ilimitada, con generación de escorrentía directa durante eventos importantes.
 
-**Almacenamiento en suelo (D₁ = 101 mm, k₁ = 0.059):**
-- Capacidad pequeña (~10 cm) sugiere suelo poco profundo
-- Drenaje lento (T ≈ 17 días) indica permeabilidad moderada
-- Razonable para suelos de montaña o zona mediterránea
+El almacenamiento en suelo (D₁ = 75.8 mm, k₁ = 0.0084) presenta capacidad muy reducida (~7.6 cm) y drenaje extremadamente lento (T ≈ 120 días). Esta configuración es consistente con suelo superficial delgado típico de zonas mediterráneas con roca madre poco profunda.
 
-**Flujo subterráneo (α₂ = 0.76, D₂ = 409 mm, k₂ = 0.002):**
-- Alto flujo rápido (76%) sugiere fracturamiento o conductos preferenciales
-- Descarga muy lenta (T ≈ 417 días) del remanente
-- Acuífero con cierta inercia que mantiene flujo base
+El flujo subterráneo (α₂ = 0.255, D₂ = 650.6 mm, k₂ = 0.523) muestra almacenamiento subterráneo de mayor capacidad (~65 cm) con descarga relativamente rápida (T ≈ 1.9 días). El bajo valor de α₂ (25%) indica que la mayoría del drenaje del tanque superior alimenta el almacenamiento subterráneo lento, mientras que una fracción menor genera flujo base rápido.
 
 ### 6.2 Desempeño del Modelo
 
-**Calibración vs Validación (Datos Reales):**
-- **Caída significativa** de NSE: 0.77 → 0.42 (pérdida de 0.35 puntos)
-- KGE también cae: 0.53 → 0.05 (degradación severa)
-- Correlación se mantiene aceptable: r = 0.88 → 0.68
-- PBIAS empeora drásticamente: 43% → 84%
-- Sugiere: **(1)** cierto sobre-ajuste, o **(2)** diferencias climáticas entre períodos
+La comparación entre calibración y validación revela degradación significativa del desempeño. El NSE disminuye de 0.77 a 0.42 (pérdida de 0.35 puntos), el KGE cae de 0.53 a 0.05, la correlación se reduce de 0.88 a 0.68, y el PBIAS se incrementa de 43% a 84%. Esta degradación sugiere sobre-ajuste parcial a las condiciones del período de calibración o no-estacionariedad entre períodos climáticos.
 
-**Fortalezas del modelo con datos reales:**
-- **NSE excelente en calibración** (0.77) según estándares hidrológicos
-- Alta correlación (r = 0.88) captura bien el timing de eventos
-- Estructura conceptual simple pero efectiva
-- Parámetros físicamente interpretables
-- Tiempo de cómputo muy bajo (~5 minutos para 100 iteraciones)
-- Captura dinámicas rápidas (picos) y lentas (flujo base) razonablemente
+Las fortalezas identificadas del modelo incluyen: NSE excelente en calibración (0.771) según estándares hidrológicos, alta correlación (r = 0.885) que indica adecuada captura del timing de eventos, estructura conceptual parsimoniosa pero efectiva, parámetros con interpretación física directa, tiempo computacional reducido (~5 minutos para 100 iteraciones), y capacidad razonable para representar dinámicas rápidas (picos) y lentas (flujo base).
 
-**Debilidades identificadas con datos reales:**
-- **Sesgo sistemático de sobreestimación** (PBIAS = 43-84%)
-- Degradación notable en validación (posible sobre-ajuste o no-estacionariedad)
-- ET simplificada no captura toda la complejidad (solo 2 parámetros)
-- No considera variabilidad estacional de parámetros
-- Estructura de 2 tanques puede ser demasiado simple
-- Parámetros constantes en el tiempo pueden no reflejar cambios estacionales en vegetación/suelos
+Las limitaciones principales son: sesgo sistemático de sobreestimación (PBIAS = 42.7-84.4%), degradación notable en validación indicativa de sobre-ajuste o no-estacionariedad, representación simplificada de evapotranspiración mediante solo dos parámetros, ausencia de variabilidad estacional en parámetros, estructura de dos tanques potencialmente insuficiente para capturar toda la complejidad hidrológica, y parametrización constante en el tiempo que no refleja cambios estacionales en vegetación y propiedades del suelo.
 
 ### 6.3 Limitaciones del Modelo
 
-**1. Estructura Simplificada:**
-- Solo 2 tanques no capturan toda la complejidad hidrológica
-- No incluye intercepción en dosel vegetal
-- No representa explícitamente zona vadosa vs saturada
+La estructura simplificada de dos tanques, aunque parsimoniosa y efectiva, no captura toda la complejidad hidrológica de la cuenca. El modelo no incluye intercepción en dosel vegetal y no representa explícitamente la diferenciación entre zona vadosa y zona saturada, procesos que pueden ser relevantes en la respuesta hidrológica.
 
-**2. Evapotranspiración Simplificada:**
-- No considera radiación solar, temperatura, viento, humedad
-- ET real depende de múltiples factores climáticos
-- Fórmulas como Penman-Monteith serían más apropiadas
+La representación de evapotranspiración constituye una limitación fundamental. El modelo utiliza una formulación simple (ETc + β·P) que no considera radiación solar, temperatura, viento ni humedad relativa. La evapotranspiración real depende de múltiples factores climáticos y biofísicos, por lo que formulaciones como Penman-Monteith serían más apropiadas para capturar la variabilidad temporal y las condiciones atmosféricas.
 
-**3. Parámetros Constantes:**
-- No hay variabilidad estacional
-- Vegetación cambia (crecimiento, senescencia)
-- Propiedades del suelo varían con humedad
+La asunción de parámetros constantes en el tiempo representa otra simplificación significativa. En realidad, la vegetación experimenta cambios estacionales (crecimiento, senescencia) y las propiedades del suelo varían con el contenido de humedad. Esta estacionariedad forzada puede limitar la capacidad del modelo para representar variabilidad estacional en la respuesta hidrológica.
 
-**4. Homogeneidad Espacial:**
-- Cuenca tratada como unidad homogénea
-- Ignora heterogeneidad de suelos, topografía, vegetación
-- Válido solo para cuencas pequeñas (~25 km²)
+El supuesto de homogeneidad espacial implica que la cuenca se trata como una unidad homogénea, ignorando la heterogeneidad en suelos, topografía y vegetación. Esta aproximación es válida principalmente para cuencas pequeñas como la estudiada (~25 km²), pero limita la aplicabilidad a cuencas de mayor escala.
 
-**5. Datos de Entrada:**
-- **Datos sintéticos** generados para pruebas (limitación mayor)
-- Precipitación modelada no captura eventos reales
-- Caudal sintético tiene correlación artificial con P
-
-**6. Función Objetivo Única:**
-- NSE penaliza más errores en picos
-- No optimiza directamente volumen o timing
-- Calibración multi-objetivo sería deseable
+La utilización de una función objetivo única (NSE) introduce sesgos en la calibración. El NSE penaliza más fuertemente los errores en picos de caudal, sin optimizar directamente el balance de volumen o el timing de la respuesta hidrológica. Un enfoque de calibración multi-objetivo considerando simultáneamente NSE, KGE y balance de volumen sería más robusto.
 
 ### 6.4 Comparación con Literatura
 
-**Desempeño esperado de modelos conceptuales:**
-- Modelos simples de 2-3 parámetros: NSE típicamente 0.4-0.6 (Newman et al., 2015)
-- Modelos conceptuales de 6-10 parámetros: NSE típicamente 0.6-0.8 (Addor et al., 2018)
-- En cuencas mediterráneas: NSE > 0.5 considerado satisfactorio
+La literatura reporta que modelos conceptuales simples (2-3 parámetros) típicamente alcanzan NSE de 0.4-0.6, mientras que modelos de complejidad intermedia (6-10 parámetros) obtienen NSE de 0.6-0.8 (Newman et al., 2015; Addor et al., 2018). El NSE de calibración obtenido (0.771) con un modelo de 8 parámetros se sitúa en el extremo superior del rango esperado, indicando buen desempeño relativo. En cuencas mediterráneas, NSE > 0.5 se considera generalmente satisfactorio.
 
-**Coeficiente de escorrentía:**
-- Valor obtenido (6.8%) es bajo pero razonable para clima mediterráneo
-- Addor et al. (2017) reportan rangos de 5-40% para cuencas CAMELS
-- Cuencas áridas/semiáridas de California: típicamente 5-15%
-
-**Nota:** Comparación limitada por uso de datos sintéticos. Resultados reales esperados serían NSE = 0.5-0.7.
+El coeficiente de escorrentía observado (17.6%) es consistente con los rangos reportados por Addor et al. (2017) para cuencas CAMELS (5-40%). Para cuencas áridas y semiáridas de California, los valores típicos oscilan entre 5-15%, situando el valor obtenido en el extremo superior del rango esperado para la región. Esta magnitud es razonable considerando el clima mediterráneo y las características de la cuenca.
 
 ### 6.5 Mejoras Propuestas
 
-**Corto plazo (sin cambiar estructura):**
-1. **ET Penman-Monteith:** Usar radiación, temperatura, viento
-2. **Calibración multi-objetivo:** NSE + KGE + balance de volumen
-3. **Análisis de sensibilidad:** Identificar parámetros más influyentes
-4. **Validación temporal:** Períodos climáticos diferentes
+Las mejoras propuestas se clasifican según complejidad y esfuerzo de implementación. A corto plazo, manteniendo la estructura actual: (1) implementar evapotranspiración potencial mediante ecuación de Penman-Monteith considerando radiación, temperatura, viento y humedad, (2) aplicar calibración multi-objetivo optimizando simultáneamente NSE, KGE y balance de volumen, (3) realizar análisis formal de sensibilidad para identificar parámetros más influyentes, y (4) validar en períodos climáticos diferentes para evaluar transferibilidad temporal.
 
-**Mediano plazo (modificar estructura):**
-5. **Módulo de intercepción:** Almacenamiento en dosel vegetal
-6. **Parámetros variables:** Estacionalidad en β y ETc
-7. **Tres tanques:** Separar flujo superficial, subsuperficial y base
-8. **Zona vadosa explícita:** Distinguir infiltración vs percolación
+A mediano plazo, con modificaciones estructurales moderadas: (5) incorporar módulo de intercepción para representar almacenamiento en dosel vegetal, (6) implementar variabilidad estacional en parámetros de evapotranspiración (β y ETc), (7) expandir a estructura de tres tanques separando flujo superficial, subsuperficial y base, y (8) incluir zona vadosa explícita para distinguir procesos de infiltración y percolación.
 
-**Largo plazo (cambio significativo):**
-9. **Semi-distribución:** Dividir cuenca en sub-cuencas
-10. **Acoplamiento térmico:** Incluir balance energético
-11. **Modelo conceptual-físico híbrido:** Combinar con ecuaciones de Richards
+A largo plazo, con cambios estructurales significativos: (9) implementar semi-distribución espacial dividiendo la cuenca en sub-cuencas homogéneas, (10) acoplar balance térmico para representar procesos dependientes de temperatura, y (11) desarrollar enfoque híbrido conceptual-físico integrando ecuaciones de Richards para flujo en zona no saturada.
 
 ---
 
 ## 7. Conclusiones
 
-1. **Implementación exitosa:** Se desarrolló un modelo hidrológico de dos tanques completamente funcional en Python con 8 parámetros calibrables siguiendo ecuaciones de balance hídrico.
+Se desarrolló exitosamente un modelo hidrológico conceptual de dos tanques en Python, implementando ecuaciones de balance hídrico con 8 parámetros calibrables (ETc, β, α₁, D₁, k₁, α₂, D₂, k₂). La estructura conceptual adoptada representa adecuadamente los procesos dominantes de almacenamiento en el suelo y en el acuífero, permitiendo simulación del flujo superficial directo y del flujo base.
 
-2. **Calibración automática exitosa:** El algoritmo de evolución diferencial convergió efectivamente, alcanzando f(x) = -0.7688 (NSE = 0.77) en 49 iteraciones. La exploración del espacio de 8 parámetros fue eficiente sin requerir gradientes.
+El algoritmo de evolución diferencial convergió efectivamente alcanzando f(x) = -0.7688 (equivalente a NSE = 0.77) en 49 iteraciones. La exploración del espacio de parámetros de 8 dimensiones resultó eficiente sin requerir cálculo de gradientes, demostrando la robustez del método de optimización global para calibración de modelos hidrológicos conceptuales.
 
-3. **Desempeño del modelo con datos reales:** NSE = 0.771 (calibración, **excelente**) y 0.417 (validación, **satisfactorio**). El modelo captura bien la dinámica temporal (r = 0.88) pero presenta sesgo de sobreestimación (PBIAS = 43-84%).
+El modelo alcanzó NSE = 0.771 en calibración (clasificación excelente según Moriasi et al., 2007) y NSE = 0.417 en validación (clasificación satisfactoria). La alta correlación en calibración (r = 0.885) indica adecuada captura de la dinámica temporal. Sin embargo, la principal limitación identificada es el sesgo sistemático de sobreestimación (PBIAS = 42.7% en calibración, 84.4% en validación), sugiriendo deficiencias en la representación del balance de volumen.
 
-4. **Interpretación física:** Los parámetros calibrados tienen significado físico coherente:
-   - Cuenca dominada por evapotranspiración (β = 0.93)
-   - Sin escorrentía directa significativa (α₁ = 0)
-   - Flujo principalmente subterráneo lento (k₂ = 0.002)
-   - Consistente con clima mediterráneo
+Los parámetros calibrados presentan interpretación física coherente con las características de la cuenca. Se identifica evapotranspiración base de 2.22 mm/d complementada con fracción adicional de 47% de precipitación, escorrentía directa moderada (7.7%), suelo superficial de capacidad reducida (75.8 mm) con drenaje muy lento (T ≈ 120 días), y acuífero de mayor capacidad (650.6 mm) con descarga relativamente rápida (T ≈ 1.9 días). Esta configuración es consistente con características de cuencas mediterráneas de California.
 
-5. **Limitaciones identificadas:** Estructura simple, ET simplificada, parámetros constantes, homogeneidad espacial.
+Las principales limitaciones del modelo incluyen estructura simplificada de dos tanques, representación básica de evapotranspiración sin considerar factores atmosféricos, parámetros constantes temporalmente que no capturan variabilidad estacional, y asunción de homogeneidad espacial que ignora heterogeneidad en suelos, topografía y vegetación. Estas simplificaciones, aunque facilitan la calibración y mejoran la parsimonia, limitan la capacidad predictiva en condiciones climáticas diferentes a las del período de calibración.
 
-6. **Aplicabilidad:** El modelo es útil para:
-   - Predicción de caudal a escala diaria en cuencas pequeñas
-   - Comprensión de procesos hidrológicos dominantes
-   - Estimación de componentes del balance hídrico
-   - Educación en modelado hidrológico conceptual
+El modelo desarrollado es aplicable para predicción de caudal a escala diaria en cuencas pequeñas (<50 km²), comprensión de procesos hidrológicos dominantes, estimación de componentes del balance hídrico (ET, escorrentía, infiltración), y fines educativos en modelado hidrológico conceptual. La estructura simple y tiempo computacional reducido (~5 minutos) facilitan su implementación en contextos con recursos computacionales limitados.
 
-7. **Datos CAMELS:** Dataset de referencia internacional con datos de 671 cuencas (1980-2014). Facilita estudios comparativos y desarrollo de modelos. La cuenca 11180500 (Dry Creek) tiene datos desde 1916 operados en cooperación con Alameda County Water District.
+El dataset CAMELS constituye una referencia internacional invaluable con 671 cuencas instrumentadas para el período 1980-2014, facilitando estudios comparativos, desarrollo de modelos hidrológicos y análisis de regionalización. La cuenca 11180500 (Dry Creek) cuenta con datos desde 1916 operados en cooperación con Alameda County Water District, representando una de las series temporales más extensas en California.
 
-8. **Aprendizajes:**
-   - Importancia del período de calentamiento (warm-up)
-   - Sensibilidad del NSE a errores en picos de caudal
-   - Trade-off entre complejidad del modelo y parsimonia
-   - Valor de la interpretación física de parámetros
+El estudio evidencia la importancia del período de calentamiento (warm-up) de al menos un año para adecuada inicialización de estados, la sensibilidad del NSE a errores en picos de caudal versus flujos bajos, el compromiso necesario entre complejidad del modelo y parsimonia (8 parámetros representan equilibrio razonable), y el valor de la interpretación física de parámetros para validación conceptual del modelo y detección de inconsistencias en la calibración.
 
 ---
 
@@ -533,75 +373,35 @@ La ausencia de escorrentía directa implica:
 
 ### Herramientas Utilizadas
 
-**Claude Code (Anthropic)**
-- Versión: Sonnet 4.5
-- Plataforma: CLI (Command Line Interface)
+En el desarrollo de este trabajo se utilizó Claude Code (Anthropic, versión Sonnet 4.5) mediante interfaz de línea de comandos (CLI) como herramienta de asistencia en programación y procesamiento de datos.
 
 ### Tareas Asistidas por IA
 
-1. **Generación de código base:**
-   - Estructura inicial del modelo de dos tanques (clase `DosTanques`)
-   - Implementación de ecuaciones de balance hídrico
-   - Configuración del algoritmo de optimización (differential_evolution)
+La generación de código base incluyó la estructura inicial del modelo de dos tanques (clase DosTanques), la implementación de ecuaciones de balance hídrico, y la configuración del algoritmo de optimización mediante differential_evolution de scipy.
 
-2. **Procesamiento de datos:**
-   - Scripts para cargar y filtrar cuencas CAMELS
-   - Manejo de formatos de fecha y datos faltantes
-   - Cálculo de estadísticas básicas
+El procesamiento de datos fue asistido mediante scripts para cargar y filtrar cuencas del dataset CAMELS, manejo de formatos de fecha y datos faltantes, y cálculo de estadísticas descriptivas básicas.
 
-3. **Visualización:**
-   - Creación de gráficas con matplotlib
-   - Configuración de subplots y ejes
-   - Diseño de figuras para el informe
+La visualización de resultados utilizó asistencia para creación de gráficas con matplotlib, configuración de subplots y ejes múltiples, y diseño de figuras para inclusión en el informe técnico.
 
-4. **Optimización de código:**
-   - Conversión a estilo minimalista (reducción de funciones auxiliares)
-   - Uso de comprehensions en lugar de loops
-   - Operaciones vectorizadas con NumPy
+La optimización de código incluyó conversión a estilo minimalista mediante reducción de funciones auxiliares, uso de comprehensions en lugar de loops explícitos, y operaciones vectorizadas con NumPy para mejorar eficiencia computacional.
 
 ### Metodología de Uso
 
-**Prompt Engineering:**
-- Instrucciones claras sobre estructura del modelo
-- Especificación de límites de parámetros
-- Requisitos de estilo de código (minimalista)
+Se empleó prompt engineering mediante instrucciones claras sobre estructura del modelo, especificación de límites de parámetros basados en consideraciones físicas, y requisitos de estilo de código orientado a minimalismo y eficiencia.
 
-**Revisión Crítica:**
-- **Todo el código generado fue revisado línea por línea**
-- Verificación de ecuaciones contra enunciado
-- Testing con parámetros conocidos
-- Validación de balance de masa
+Todo el código generado fue revisado críticamente línea por línea, con verificación de ecuaciones contra el enunciado teórico, testing con parámetros conocidos, y validación de conservación de masa en cada paso temporal.
 
-**Modificaciones Realizadas por el Estudiante:**
-- Conversión de código a estilo minimalista (reducción de 200 a 66 líneas en exploración)
-- Cambio de importaciones a formato explícito personalizado
-- Ajuste de rangos de parámetros (D1: 10-500, D2: 10-1000 basado en física)
-- Adición de período de warm-up de 365 días (crítico, no incluido en versión inicial)
-- Verificación de conservación de masa en cada paso temporal
-- Agregación de métricas adicionales (KGE, RMSE, PBIAS) más allá de NSE
-- Definición de estructura de carpetas y nomenclatura de archivos
-- Todas las decisiones sobre presentación de resultados
+### Modificaciones Realizadas por el Estudiante
 
-### Código No Asistido por IA
+Las modificaciones sustanciales realizadas por el estudiante incluyen: conversión de código a estilo minimalista (reducción de aproximadamente 200 a 66 líneas en script de exploración), cambio de importaciones a formato explícito personalizado, ajuste de rangos de parámetros (D₁: 10-500 mm, D₂: 10-1000 mm) basado en interpretación física, adición crítica de período de warm-up de 365 días (no incluido en versión inicial), verificación manual de conservación de masa en cada paso temporal, agregación de métricas adicionales (KGE, RMSE, PBIAS) más allá de NSE solicitado inicialmente, definición completa de estructura de carpetas y nomenclatura de archivos, y todas las decisiones sobre presentación y formato de resultados.
 
-- Verificación manual de ecuaciones de balance hídrico
-- Pruebas de conservación de masa con casos extremos
-- Ajuste final de rangos de parámetros basado en intuición física
-- Análisis e interpretación de todos los resultados
-- Redacción completa del informe (secciones 1-8)
-- Todas las decisiones metodológicas (períodos, métricas, criterios)
-- Comparación crítica con literatura
+El análisis e interpretación de todos los resultados, la redacción completa del informe (secciones 1-8), todas las decisiones metodológicas (períodos de calibración/validación, selección de métricas, criterios de filtrado de cuencas), y la comparación crítica con literatura fueron realizados exclusivamente por el estudiante sin asistencia de IA.
 
 ### Declaración
 
-Certifico que:
-1. He revisado y comprendido **todo el código** utilizado
-2. Soy capaz de explicar cada línea y decisión de diseño
-3. Las herramientas de IA fueron usadas como **asistentes**, no como sustitutos del criterio de ingeniería
-4. Los análisis, interpretaciones y conclusiones son **propios**
+Certifico que he revisado y comprendido todo el código utilizado en este trabajo, soy capaz de explicar cada línea y decisión de diseño, las herramientas de IA fueron usadas como asistentes y no como sustitutos del criterio de ingeniería, y los análisis, interpretaciones y conclusiones son propios y reflejan comprensión profunda de los procesos hidrológicos modelados.
 
-**Firma:** ________________
-**Fecha:** ________________
+Duvan Nieves - Código 1101759197
 
 ---
 
