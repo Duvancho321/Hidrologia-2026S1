@@ -14,8 +14,8 @@ from numpy import (arange, sum, sort, sqrt, corrcoef, array)
 from matplotlib import pyplot as plt
 from scipy import stats
 from pathlib import Path
-from modelo import DosTanques
-from metricas import metricas_completas
+from src.modelos import DosTanques
+from src.metricas import metricas_completas
 
 DATOS = Path(__file__).parent.parent / 'datos'
 FIGS = Path(__file__).parent.parent / 'figuras'

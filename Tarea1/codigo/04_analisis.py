@@ -13,7 +13,8 @@ from pandas import read_csv, DataFrame
 from numpy import sum
 from matplotlib import pyplot as plt
 from pathlib import Path
-from modelo import DosTanques
+from src.modelos import DosTanques
+from src.metricas import nse
 
 DATOS = Path(__file__).parent.parent / 'datos'
 FIGS = Path(__file__).parent.parent / 'figuras'
@@ -56,9 +57,9 @@ if len(fuentes_p) > 1:
         P = df[mask_cal][fuente].values
         Q_obs = df[mask_cal]['qobs'].values
         Qsim, _, _ = modelo.run(P)
-        nse = 1 - sum((Q_obs - Qsim)**2) / sum((Q_obs - Q_obs.mean())**2)
+        nse_val = nse(Q_obs, Qsim)
         resultados_fuentes.append({'Fuente': fuente.replace('prcp_', '').upper(),
-                                   'P_mean': P.mean(), 'NSE': nse})
+                                   'P_mean': P.mean(), 'NSE': nse_val})
 
     res_df = DataFrame(resultados_fuentes)
     print(res_df.to_string(index=False))

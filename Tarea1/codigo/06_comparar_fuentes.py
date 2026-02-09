@@ -13,8 +13,8 @@ from pandas import read_csv, DataFrame
 from numpy import corrcoef
 from matplotlib import pyplot as plt
 from pathlib import Path
-from modelo import DosTanques
-from metricas import metricas_completas
+from src.modelos import DosTanques
+from src.metricas import metricas_completas
 
 DATOS = Path(__file__).parent.parent / 'datos'
 FIGS = Path(__file__).parent.parent / 'figuras'

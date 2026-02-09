@@ -14,7 +14,8 @@ from numpy import array, sum, zeros, ndarray
 from matplotlib import pyplot as plt
 from scipy.optimize import differential_evolution
 from pathlib import Path
-from modelo import DosTanques
+from src.modelos import DosTanques
+from src.metricas import nse
 
 DATOS = Path(__file__).parent.parent / 'datos'
 FIGS = Path(__file__).parent.parent / 'figuras'
@@ -33,10 +34,6 @@ mask_warm = (df['fecha'] >= '1989-01-01') & (df['fecha'] < '1990-01-01')
 P_cal, Q_obs_cal = df[mask_cal]['prcp_daymet'].values, df[mask_cal]['qobs'].values
 P_val, Q_obs_val = df[mask_val]['prcp_daymet'].values, df[mask_val]['qobs'].values
 P_warm = df[mask_warm]['prcp_daymet'].values if mask_warm.sum() >= 365 else zeros(365)
-
-# Función objetivo NSE (minimizar -NSE = maximizar NSE)
-def nse(Qobs, Qsim):
-    return 1 - sum((Qobs - Qsim)**2) / sum((Qobs - Qobs.mean())**2)
 
 # Función objetivo para optimización
 def objetivo(params):
